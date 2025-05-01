@@ -1,0 +1,168 @@
+/* Premium and Professional Patient Portal Styles */
+
+/* Import a Premium Font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #d9e8ff);
+  color: #34495e;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: #0d3b66;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Form Section */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+input, select {
+  flex: 1 1 280px;
+  padding: 14px 18px;
+  border: 1px solid #ccddee;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9fbff;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #5a9cff;
+  box-shadow: 0 0 8px rgba(90, 156, 255, 0.5);
+}
+
+/* Buttons */
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+button {
+  padding: 12px 26px;
+  background-image: linear-gradient(to right, #3282b8, #0f4c75);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s, background-image 0.3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  background-image: linear-gradient(to right, #0f4c75, #3282b8);
+  box-shadow: 0 6px 20px rgba(15, 76, 117, 0.3);
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+th, td {
+  padding: 18px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e8eef3;
+}
+
+th {
+  background-color: #0d3b66;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+td {
+  background-color: #ffffff;
+}
+
+tr:nth-child(even) td {
+  background-color: #f7fbff;
+}
+
+tr:hover td {
+  background-color: #e6f0ff;
+  transition: background-color 0.3s ease;
+}
+
+/* Select Status */
+select {
+  background: #f9fbff;
+  appearance: none;
+}
+
+/* Links */
+a {
+  color: #3282b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #0f4c75;
+  text-decoration: underline;
+}
+
+/* Loading text */
+p {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .form {
+    flex-direction: column;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input, select {
+    flex: 1 1 100%;
+  }
+
+  table, th, td {
+    font-size: 14px;
+  }
+}
