@@ -186,6 +186,7 @@ function App({ signOut, user }) {
               <option value="te">Telugu</option>
               <option value="ta">Tamil</option>
               <option value="kn">Kannada</option>
+              <option value="ml">Malayalam</option>
             </select>
           </label>
           <label>Report URL (optional)
