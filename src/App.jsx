@@ -114,47 +114,39 @@ function App({ signOut, user }) {
   };
 
   const uploadReport = async (patientId) => {
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.accept = '.pdf,.jpg,.jpeg,.png';
-  fileInput.click();
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.pdf,.jpg,.jpeg,.png';
+    fileInput.click();
 
-  fileInput.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      const base64File = reader.result.split(',')[1];
-      try {
-        const session = await Auth.currentSession();
-        const token = session.getIdToken().getJwtToken();
-        const labId = user.attributes.email;
-        const key = `reports/${labId}/${patientId}.pdf`;
+    fileInput.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64File = reader.result.split(',')[1];
+        try {
+          const session = await Auth.currentSession();
+          const token = session.getIdToken().getJwtToken();
+          const labId = user.attributes.email;
+          const key = `reports/${labId}/${patientId}.pdf`;
 
-        const uploadResponse = await fetch('https://asu0kcdiyk.execute-api.us-east-1.amazonaws.com/prod/uploadReport', {
-          method: 'POST',
-          headers: { 'Authorization': token, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fileContent: base64File, filename: key, patientId, labId })
-        });
+          await fetch('https://asu0kcdiyk.execute-api.us-east-1.amazonaws.com/prod/uploadReport', {
+            method: 'POST',
+            headers: { 'Authorization': token, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fileContent: base64File, filename: key, patientId, labId })
+          });
 
-        if (uploadResponse.ok) {
           toast.success('Report uploaded successfully!');
-          // Automatically update status to "Completed"
-          await updateStatus(patientId, 'Completed');
-        } else {
-          const result = await uploadResponse.json();
-          toast.error(result.error || 'Failed to upload report');
+          fetchPatients();
+        } catch (err) {
+          console.error('Error uploading report:', err);
+          toast.error('Error uploading report');
         }
-        fetchPatients();
-      } catch (err) {
-        console.error('Error uploading report:', err);
-        toast.error('Error uploading report');
-      }
+      };
+      reader.readAsDataURL(file);
     };
-    reader.readAsDataURL(file);
   };
-};
-
 
   return (
     <div className="container">
