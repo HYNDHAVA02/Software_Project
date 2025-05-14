@@ -189,9 +189,7 @@ function App({ signOut, user }) {
               <option value="ml">Malayalam</option>
             </select>
           </label>
-          <label>Report URL (optional)
-            <input value={form.reportUrl} onChange={(e) => updateForm('reportUrl', e.target.value)} />
-          </label>
+          
         </div>
 
         <div className="buttons">
